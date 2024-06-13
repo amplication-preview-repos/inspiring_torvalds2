@@ -1,0 +1,71 @@
+syntax = "proto3";
+
+                 package project;
+service ProjectService {
+ rpc createProject (ProjectCreateInput) returns (Project) {}
+rpc projects (findManyParams) returns (stream Project) {}
+rpc project (ProjectWhereUniqueInput) returns (Project) {}
+rpc updateProject (ProjectUpdateInput) returns (Project) {}
+rpc deleteProject (ProjectWhereUniqueInput) returns (Project) {}
+rpc findManyProject (ProjectWhereUniqueInput) returns (stream Skill) {}
+rpc updateProject (SkillParams) returns (stream Skill) {}
+rpc connectProject (SkillParams) returns (Skill) {}
+rpc disconnectProject (SkillParams) returns (Skill) {} 
+ }
+message ProjectCreateInput {
+string createdAt = 1;
+string description = 2;
+string id = 3;
+repeated Skill skills = 4;
+string title = 5;
+string updatedAt = 6;
+string url = 7;
+};
+message Project {
+string createdAt = 1;
+string description = 2;
+string id = 3;
+repeated Skill skills = 4;
+string title = 5;
+string updatedAt = 6;
+string url = 7;
+};
+message ProjectWhereUniqueInput {
+string createdAt = 1;
+string description = 2;
+string id = 3;
+repeated Skill skills = 4;
+string title = 5;
+string updatedAt = 6;
+string url = 7;
+};
+message ProjectUpdateInput {
+string createdAt = 1;
+string description = 2;
+string id = 3;
+repeated Skill skills = 4;
+string title = 5;
+string updatedAt = 6;
+string url = 7;
+};
+message findManyParams {
+
+};
+message Skill {
+string createdAt = 1;
+string id = 2;
+string name = 3;
+int32 proficiency = 4;
+string updatedAt = 5;
+};
+message SkillWhereUniqueInput {
+string createdAt = 1;
+string id = 2;
+string name = 3;
+int32 proficiency = 4;
+string updatedAt = 5;
+};
+message SkillParams {
+ProjectWhereUniqueInput projectWhereUniqueInput = 1;
+SkillWhereUniqueInput skillWhereUniqueInput = 2;
+};

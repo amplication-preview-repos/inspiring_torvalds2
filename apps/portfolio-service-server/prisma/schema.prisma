@@ -1,0 +1,51 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Skill {
+  createdAt   DateTime @default(now())
+  id          String   @id @default(cuid())
+  name        String?
+  proficiency Int?
+  project     Project? @relation(fields: [projectId], references: [id])
+  projectId   String?
+  updatedAt   DateTime @updatedAt
+}
+
+model Project {
+  createdAt   DateTime @default(now())
+  description String?
+  id          String   @id @default(cuid())
+  skills      Skill[]
+  title       String?
+  updatedAt   DateTime @updatedAt
+  url         String?
+}
+
+model Experience {
+  company     String?
+  createdAt   DateTime  @default(now())
+  description String?
+  endDate     DateTime?
+  id          String    @id @default(cuid())
+  role        String?
+  startDate   DateTime?
+  updatedAt   DateTime  @updatedAt
+}
+
+model User {
+  createdAt DateTime @default(now())
+  email     String?  @unique
+  firstName String?
+  id        String   @id @default(cuid())
+  lastName  String?
+  password  String
+  roles     Json
+  updatedAt DateTime @updatedAt
+  username  String   @unique
+}
